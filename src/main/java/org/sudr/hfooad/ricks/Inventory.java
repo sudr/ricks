@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 import org.apache.commons.lang.StringUtils;
-import org.sudr.hfooad.ricks.Guitar.Builder;
-import org.sudr.hfooad.ricks.Guitar.Type;
-import org.sudr.hfooad.ricks.Guitar.Wood;
+import org.sudr.hfooad.ricks.GuitarSpec.Builder;
+import org.sudr.hfooad.ricks.GuitarSpec.Type;
+import org.sudr.hfooad.ricks.GuitarSpec.Wood;
 
 public class Inventory {
 
@@ -19,7 +19,14 @@ public class Inventory {
 	}
 
 	public void addGuitar(String serialNumber, double price, Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-		Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
+		GuitarSpec spec = new GuitarSpec.SpecBuilder()
+									.builder(builder)
+									.model(model)
+									.type(type)
+									.backWood(backWood)
+									.topWood(topWood)
+									.build();
+		Guitar guitar = new Guitar(serialNumber, price, spec);
 		guitars.add(guitar);
 	}
 
@@ -32,24 +39,25 @@ public class Inventory {
 		return null;
 	}
 
-	public Collection<Guitar> search(Guitar searchGuitar) {
+	public Collection<Guitar> search(GuitarSpec searchSpec) {
 		Collection<Guitar> matchingGuitars = new ArrayList<Guitar>();
 		for (Guitar g : guitars) {
 			// ignore serialNumber and price since those are unique
-			if (g.getBuilder() != searchGuitar.getBuilder()) {
+			GuitarSpec guitarSpec = g.getSpec();
+			if (guitarSpec.getBuilder() != searchSpec.getBuilder()) {
 				continue;
 			}
-			String model = searchGuitar.getModel();
-			if (StringUtils.isNotBlank(model) && !StringUtils.equalsIgnoreCase(model, g.getModel())) {
+			String model = searchSpec.getModel();
+			if (StringUtils.isNotBlank(model) && !StringUtils.equalsIgnoreCase(model, guitarSpec.getModel())) {
 				continue;
 			}
-			if (g.getType() != searchGuitar.getType()) {
+			if (guitarSpec.getType() != searchSpec.getType()) {
 				continue;
 			}
-			if (g.getBackWood() != searchGuitar.getBackWood()) {
+			if (guitarSpec.getBackWood() != searchSpec.getBackWood()) {
 				continue;
 			}
-			if (g.getTopWood() != searchGuitar.getTopWood()) {
+			if (guitarSpec.getTopWood() != searchSpec.getTopWood()) {
 				continue;
 			}
 			matchingGuitars.add(g);

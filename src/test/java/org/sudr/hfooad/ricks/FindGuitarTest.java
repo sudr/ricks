@@ -2,9 +2,9 @@ package org.sudr.hfooad.ricks;
 
 import java.util.Collection;
 
-import org.sudr.hfooad.ricks.Guitar.Builder;
-import org.sudr.hfooad.ricks.Guitar.Type;
-import org.sudr.hfooad.ricks.Guitar.Wood;
+import org.sudr.hfooad.ricks.GuitarSpec.Builder;
+import org.sudr.hfooad.ricks.GuitarSpec.Type;
+import org.sudr.hfooad.ricks.GuitarSpec.Wood;
 import org.testng.annotations.Test;
 
 public class FindGuitarTest {
@@ -13,18 +13,25 @@ public class FindGuitarTest {
 	public void searchForGuitar() {
 		Inventory inventory = new Inventory();
 		initialize(inventory);
-		Guitar whatErinLikes = new Guitar("", 0, Builder.FENDER, "Stratocastor", Type.ELECTRIC, Wood.ALDER, Wood.ALDER);
+		GuitarSpec whatErinLikes = new GuitarSpec.SpecBuilder()
+											.builder(Builder.FENDER)
+											.model("Stratocastor")
+											.type(Type.ELECTRIC)
+											.backWood(Wood.ALDER)
+											.topWood(Wood.ALDER)
+											.build();
 		
 		Collection<Guitar> guitars = inventory.search(whatErinLikes);
 		if (guitars.isEmpty()) {
 			System.out.println("Sorry, Erin, we have nothing for you.");
 		} else {
 			for (Guitar guitar : guitars) {
+				GuitarSpec guitarSpec = guitar.getSpec();
 				System.out.println("Erin, you might like this " +
-						guitar.getBuilder() + " " + guitar.getModel() + " " +
-						guitar.getType() + " guitar:\n   " +
-						guitar.getBackWood() + " back and sides,\n   " +
-						guitar.getTopWood() + " top.\nYou can have it for only $" +
+						guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " +
+						guitarSpec.getType() + " guitarSpec:\n   " +
+						guitarSpec.getBackWood() + " back and sides,\n   " +
+						guitarSpec.getTopWood() + " top.\nYou can have it for only $" +
 						guitar.getPrice() + "!");
 			}
 		}
