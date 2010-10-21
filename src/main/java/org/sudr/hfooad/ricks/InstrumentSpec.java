@@ -1,9 +1,12 @@
 package org.sudr.hfooad.ricks;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-public abstract class InstrumentSpec {
+public class InstrumentSpec {
 
 	public enum Type {
 		ACOUSTIC, ELECTRIC;
@@ -79,38 +82,30 @@ public abstract class InstrumentSpec {
 		}
 	}
 
-	protected Builder builder;
-	protected String model;
-	protected Type type;
-	protected Wood backWood;
-	protected Wood topWood;
-
-	public InstrumentSpec(Builder builder, String model, Type type, Wood backWood, Wood topWood) {
-		this.builder = builder;
-		this.model = model;
-		this.type = type;
-		this.backWood = backWood;
-		this.topWood = topWood;
+	public enum MandolinStyle {
+		A, F
 	}
 
-	public Builder getBuilder() {
-		return builder;
+	private Map<String, Object> properties;
+
+	public InstrumentSpec(InstrumentSpecBuilder specBuilder) {
+		if (specBuilder == null || specBuilder.getProperties() == null) {
+			this.properties = new HashMap<String, Object>();
+		} else {
+			this.properties = specBuilder.getProperties();
+		}
 	}
 
-	public String getModel() {
-		return model;
+	public InstrumentSpec(Map<String, Object> properties) {
+		this.properties = properties;
 	}
 
-	public Type getType() {
-		return type;
+	public Object getProperty(String propertyName) {
+		return properties.get(propertyName);
 	}
-
-	public Wood getBackWood() {
-		return backWood;
-	}
-
-	public Wood getTopWood() {
-		return topWood;
+	
+	public Map<String, Object> getProperties() {
+		return Collections.unmodifiableMap(properties);
 	}
 
 	@Override
@@ -122,31 +117,17 @@ public abstract class InstrumentSpec {
 			return false;
 		}
 		InstrumentSpec other = (InstrumentSpec) obj;
-		if (this.getBuilder() != other.getBuilder()) {
-			return false;
-		}
-		String model = other.getModel();
-		if (StringUtils.isNotBlank(model) && !StringUtils.equalsIgnoreCase(model, this.getModel())) {
-			return false;
-		}
-		if (this.getType() != other.getType()) {
-			return false;
-		}
-		if (this.getBackWood() != other.getBackWood()) {
-			return false;
-		}
-		if (this.getTopWood() != other.getTopWood()) {
-			return false;
+		
+		for (String propertyName : other.getProperties().keySet()) {
+			if (!other.getProperty(propertyName).equals(getProperty(propertyName))) {
+				return false;
+			}
 		}
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return new ToStringBuilder(this).append(model)
-			.append(type)
-			.append(backWood)
-			.append(topWood)
-			.toString();
+		return new ToStringBuilder(this).append(properties).toString();
 	}
 }

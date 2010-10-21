@@ -4,16 +4,16 @@ import java.util.Collection;
 
 import org.sudr.hfooad.ricks.Instrument.InstrumentType;
 import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
+import org.sudr.hfooad.ricks.InstrumentSpec.MandolinStyle;
 import org.sudr.hfooad.ricks.InstrumentSpec.Type;
 import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
-import org.sudr.hfooad.ricks.MandolinSpec.Style;
 
 public class FindGuitarSimulator {
 
 	public static void main(String[] args) {
 		Inventory inventory = new Inventory();
 		initialize(inventory);
-		GuitarSpec whatErinLikes = new GuitarSpec.GuitarSpecBuilder()
+		InstrumentSpec whatErinLikes = new InstrumentSpecBuilder()
 											.builder(Builder.FENDER)
 											.model("Stratocastor")
 											.type(Type.ELECTRIC)
@@ -27,20 +27,20 @@ public class FindGuitarSimulator {
 			System.out.println("Sorry, Erin, we have nothing for you.");
 		} else {
 			for (Instrument guitar : guitars) {
-				GuitarSpec guitarSpec = (GuitarSpec) guitar.getSpec();
+				InstrumentSpec guitarSpec = guitar.getSpec();
 				System.out.println("Erin, you might like this " +
-						guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " +
-						guitarSpec.getType() + " guitar:\n   " +
-						guitarSpec.getNumStrings() + " strings,\n   " +
-						guitarSpec.getBackWood() + " back and sides,\n   " +
-						guitarSpec.getTopWood() + " top.\nYou can have it for only $" +
+						guitarSpec.getProperty("builder") + " " + guitarSpec.getProperty("model") + " " +
+						guitarSpec.getProperty("type") + " guitar:\n   " +
+						guitarSpec.getProperty("numStrings") + " strings,\n   " +
+						guitarSpec.getProperty("backWood") + " back and sides,\n   " +
+						guitarSpec.getProperty("topWood") + " top.\nYou can have it for only $" +
 						guitar.getPrice() + "!");
 			}
 		}
 	}
 
 	private static void initialize(Inventory inventory) {
-		GuitarSpec spec1 = new GuitarSpec.GuitarSpecBuilder()
+		InstrumentSpec spec1 = new InstrumentSpecBuilder()
 							.builder(Builder.FENDER)
 							.model("Stratocastor")
 							.type(Type.ELECTRIC)
@@ -49,16 +49,16 @@ public class FindGuitarSimulator {
 							.numStrings(12)
 							.build();
 		
-		MandolinSpec spec2 = new MandolinSpec.MandolinSpecBuilder()
+		InstrumentSpec spec2 = new InstrumentSpecBuilder()
 							.builder(Builder.FENDER)
 							.model("Stratocastor")
 							.type(Type.ELECTRIC)
 							.backWood(Wood.ALDER)
 							.topWood(Wood.ALDER)
-							.style(Style.A)
+							.style(MandolinStyle.A)
 							.build();
 		
-		GuitarSpec spec3 = new GuitarSpec.GuitarSpecBuilder()
+		InstrumentSpec spec3 = new InstrumentSpecBuilder()
 							.builder(Builder.FENDER)
 							.model("Stratocastor")
 							.type(Type.ELECTRIC)
