@@ -2,6 +2,7 @@ package org.sudr.hfooad.ricks;
 
 import java.util.Collection;
 
+import org.sudr.hfooad.ricks.Instrument.InstrumentType;
 import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
 import org.sudr.hfooad.ricks.InstrumentSpec.Type;
 import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
@@ -65,9 +66,9 @@ public class FindMandolinSimulator {
 							.topWood(Wood.ALDER)
 							.numStrings(12)
 							.build();
-		
-		inventory.addInstrument("V95963", 1499.95, spec1);
-		inventory.addInstrument("X12132", 800.95, spec2);
-		inventory.addInstrument("V9512", 1549.95, spec3);
+	
+		inventory.addInstrument(InstrumentType.GUITAR, "V95963", 1499.95, spec1);
+		inventory.addInstrument(InstrumentType.MANDOLIN, "X12132", 800.95, spec2);
+		inventory.addInstrument(InstrumentType.GUITAR, "V9512", 1549.95, spec3);
 	}
 }

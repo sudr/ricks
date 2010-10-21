@@ -4,6 +4,7 @@ import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
 import org.sudr.hfooad.ricks.InstrumentSpec.Type;
 import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
 import org.sudr.hfooad.ricks.MandolinSpec.Style;
+import org.sudr.hfooad.ricks.Instrument.InstrumentType;
 
 shared_behavior "shared behaviors", {
 	given "a stocked inventory", {
@@ -17,7 +18,7 @@ shared_behavior "shared behaviors", {
 						  .topWood(Wood.ALDER)
 						  .numStrings(12)
 						  .build()
-	  inventory.addInstrument 'G001', 1199.0, guitarSpec
+	  inventory.addInstrument InstrumentType.GUITAR, 'G001', 1199.0, guitarSpec
 	  
 	  mandolinSpec = new MandolinSpec.MandolinSpecBuilder()
 						  .builder(Builder.FENDER)
@@ -27,7 +28,7 @@ shared_behavior "shared behaviors", {
 						  .topWood(Wood.ALDER)
 						  .style(Style.A)
 						  .build()
-	  inventory.addInstrument 'M001', 1499.0, mandolinSpec
+	  inventory.addInstrument InstrumentType.MANDOLIN, 'M001', 1499.0, mandolinSpec
 	  
 	  guitarSpec = new GuitarSpec.GuitarSpecBuilder()
 						  .builder(Builder.FENDER)
@@ -37,7 +38,7 @@ shared_behavior "shared behaviors", {
 						  .topWood(Wood.ALDER)
 						  .numStrings(12)
 						  .build()
-	  inventory.addInstrument 'G002', 1299.0, guitarSpec
+	  inventory.addInstrument InstrumentType.GUITAR, 'G002', 1299.0, guitarSpec
 	  
 	  mandolinSpec = new MandolinSpec.MandolinSpecBuilder()
 						  .builder(Builder.FENDER)
@@ -47,7 +48,7 @@ shared_behavior "shared behaviors", {
 						  .topWood(Wood.ALDER)
 						  .style(Style.A)
 						  .build()
-      inventory.addInstrument 'M002', 1099.0, mandolinSpec
+      inventory.addInstrument InstrumentType.MANDOLIN, 'M002', 1099.0, mandolinSpec
 	}
 }
 

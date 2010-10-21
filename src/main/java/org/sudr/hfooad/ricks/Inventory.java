@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
+import org.sudr.hfooad.ricks.Instrument.InstrumentType;
+
 public class Inventory {
 
 	private LinkedList<Instrument> inventory;
@@ -13,17 +15,9 @@ public class Inventory {
 		inventory = new LinkedList<Instrument>();
 	}
 
-	public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
-		Instrument instrument = null;
-		if (spec instanceof GuitarSpec) {
-			instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
-		} else if (spec instanceof MandolinSpec) {
-			instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
-		}
-		
-		if (instrument != null) {
-			inventory.add(instrument);
-		}
+	public void addInstrument(InstrumentType instrumentType, String serialNumber, double price, InstrumentSpec spec) {
+		Instrument instrument = new Instrument(instrumentType, serialNumber, price, spec);
+		inventory.add(instrument);
 	}
 
 	public Instrument get(String serialNumber) {
