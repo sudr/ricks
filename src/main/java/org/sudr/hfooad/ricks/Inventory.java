@@ -7,21 +7,29 @@ import java.util.LinkedList;
 
 public class Inventory {
 
-	private LinkedList<Guitar> guitars;
+	private LinkedList<Instrument> inventory;
 
 	public Inventory() {
-		guitars = new LinkedList<Guitar>();
+		inventory = new LinkedList<Instrument>();
 	}
 
-	public void addGuitar(String serialNumber, double price, GuitarSpec spec) {
-		Guitar guitar = new Guitar(serialNumber, price, spec);
-		guitars.add(guitar);
+	public void addInstrument(String serialNumber, double price, InstrumentSpec spec) {
+		Instrument instrument = null;
+		if (spec instanceof GuitarSpec) {
+			instrument = new Guitar(serialNumber, price, (GuitarSpec) spec);
+		} else if (spec instanceof MandolinSpec) {
+			instrument = new Mandolin(serialNumber, price, (MandolinSpec) spec);
+		}
+		
+		if (instrument != null) {
+			inventory.add(instrument);
+		}
 	}
 
-	public Guitar getGuitar(String serialNumber) {
-		for (Guitar g : guitars) {
-			if (g.getSerialNumber().equals(serialNumber)) {
-				return g;
+	public Instrument get(String serialNumber) {
+		for (Instrument instr : inventory) {
+			if (instr.getSerialNumber().equals(serialNumber)) {
+				return instr;
 			}
 		}
 		return null;
@@ -29,11 +37,21 @@ public class Inventory {
 
 	public Collection<Guitar> search(GuitarSpec searchSpec) {
 		Collection<Guitar> matchingGuitars = new ArrayList<Guitar>();
-		for (Guitar g : guitars) {
+		for (Instrument g : inventory) {
 			if (g.getSpec().equals(searchSpec)) {
-				matchingGuitars.add(g);
+				matchingGuitars.add((Guitar) g);
 			}
 		}
-		return matchingGuitars.isEmpty() ? Collections.<Guitar> emptyList() : matchingGuitars;
+		return matchingGuitars.isEmpty() ? Collections.<Guitar> emptyList() : Collections.unmodifiableCollection(matchingGuitars);
+	}
+	
+	public Collection<Mandolin> search(MandolinSpec searchSpec) {
+		Collection<Mandolin> matchingMandolins = new ArrayList<Mandolin>();
+		for (Instrument m : inventory) {
+			if (m.getSpec().equals(searchSpec)) {
+				matchingMandolins.add((Mandolin) m);
+			}
+		}
+		return matchingMandolins.isEmpty() ? Collections.<Mandolin> emptyList() : Collections.unmodifiableCollection(matchingMandolins);
 	}
 }

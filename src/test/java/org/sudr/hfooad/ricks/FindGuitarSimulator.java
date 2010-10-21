@@ -2,32 +2,31 @@ package org.sudr.hfooad.ricks;
 
 import java.util.Collection;
 
-import org.sudr.hfooad.ricks.GuitarSpec.Builder;
-import org.sudr.hfooad.ricks.GuitarSpec.Type;
-import org.sudr.hfooad.ricks.GuitarSpec.Wood;
-import org.testng.annotations.Test;
+import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
+import org.sudr.hfooad.ricks.InstrumentSpec.Type;
+import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
+import org.sudr.hfooad.ricks.MandolinSpec.Style;
 
-public class FindGuitarTest {
+public class FindGuitarSimulator {
 
-	@Test
-	public void searchForGuitar() {
+	public static void main(String[] args) {
 		Inventory inventory = new Inventory();
 		initialize(inventory);
-		GuitarSpec whatErinLikes = new GuitarSpec.SpecBuilder()
-											.builder(Builder.FENDER)
+		GuitarSpec whatErinLikes = new GuitarSpec.GuitarSpecBuilder()
+											.builder(Builder.COLLINGS)
 											.model("Stratocastor")
 											.type(Type.ELECTRIC)
 											.backWood(Wood.ALDER)
 											.topWood(Wood.ALDER)
-											.numStrings(12)
+											.numStrings(11)
 											.build();
 		
 		Collection<Guitar> guitars = inventory.search(whatErinLikes);
 		if (guitars.isEmpty()) {
 			System.out.println("Sorry, Erin, we have nothing for you.");
 		} else {
-			for (Guitar guitar : guitars) {
-				GuitarSpec guitarSpec = guitar.getSpec();
+			for (Instrument guitar : guitars) {
+				GuitarSpec guitarSpec = (GuitarSpec) guitar.getSpec();
 				System.out.println("Erin, you might like this " +
 						guitarSpec.getBuilder() + " " + guitarSpec.getModel() + " " +
 						guitarSpec.getType() + " guitar:\n   " +
@@ -39,16 +38,8 @@ public class FindGuitarTest {
 		}
 	}
 
-	private void initialize(Inventory inventory) {
-		GuitarSpec spec1 = new GuitarSpec.SpecBuilder()
-							.builder(Builder.FENDER)
-							.model("Stratocastor")
-							.type(Type.ELECTRIC)
-							.backWood(Wood.ALDER)
-							.topWood(Wood.ALDER)
-							.numStrings(12)
-							.build();
-		GuitarSpec spec2 = new GuitarSpec.SpecBuilder()
+	private static void initialize(Inventory inventory) {
+		GuitarSpec spec1 = new GuitarSpec.GuitarSpecBuilder()
 							.builder(Builder.FENDER)
 							.model("Stratocastor")
 							.type(Type.ELECTRIC)
@@ -57,7 +48,26 @@ public class FindGuitarTest {
 							.numStrings(12)
 							.build();
 		
-		inventory.addGuitar("V95963", 1499.95, spec1);
-		inventory.addGuitar("V9512", 1549.95, spec2);
+		MandolinSpec spec2 = new MandolinSpec.MandolinSpecBuilder()
+							.builder(Builder.FENDER)
+							.model("Stratocastor")
+							.type(Type.ELECTRIC)
+							.backWood(Wood.ALDER)
+							.topWood(Wood.ALDER)
+							.style(Style.A)
+							.build();
+		
+		GuitarSpec spec3 = new GuitarSpec.GuitarSpecBuilder()
+							.builder(Builder.FENDER)
+							.model("Stratocastor")
+							.type(Type.ELECTRIC)
+							.backWood(Wood.ALDER)
+							.topWood(Wood.ALDER)
+							.numStrings(12)
+							.build();
+		
+		inventory.addInstrument("V95963", 1499.95, spec1);
+		inventory.addInstrument("X12132", 800.95, spec2);
+		inventory.addInstrument("V9512", 1549.95, spec3);
 	}
 }
