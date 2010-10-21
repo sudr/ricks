@@ -13,15 +13,15 @@ public class FindGuitarSimulator {
 		Inventory inventory = new Inventory();
 		initialize(inventory);
 		GuitarSpec whatErinLikes = new GuitarSpec.GuitarSpecBuilder()
-											.builder(Builder.COLLINGS)
+											.builder(Builder.FENDER)
 											.model("Stratocastor")
 											.type(Type.ELECTRIC)
 											.backWood(Wood.ALDER)
 											.topWood(Wood.ALDER)
-											.numStrings(11)
+											.numStrings(12)
 											.build();
 		
-		Collection<Guitar> guitars = inventory.search(whatErinLikes);
+		Collection<Instrument> guitars = inventory.search(whatErinLikes);
 		if (guitars.isEmpty()) {
 			System.out.println("Sorry, Erin, we have nothing for you.");
 		} else {

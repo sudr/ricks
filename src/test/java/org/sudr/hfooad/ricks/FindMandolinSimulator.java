@@ -21,7 +21,7 @@ public class FindMandolinSimulator {
 											.style(Style.A)
 											.build();
 		
-		Collection<Mandolin> mandolins = inventory.search(whatErinLikes);
+		Collection<Instrument> mandolins = inventory.search(whatErinLikes);
 		if (mandolins.isEmpty()) {
 			System.out.println("Sorry, Erin, we have nothing for you.");
 		} else {

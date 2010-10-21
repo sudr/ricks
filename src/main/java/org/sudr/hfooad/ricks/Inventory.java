@@ -35,23 +35,13 @@ public class Inventory {
 		return null;
 	}
 
-	public Collection<Guitar> search(GuitarSpec searchSpec) {
-		Collection<Guitar> matchingGuitars = new ArrayList<Guitar>();
-		for (Instrument g : inventory) {
-			if (g.getSpec().equals(searchSpec)) {
-				matchingGuitars.add((Guitar) g);
+	public Collection<Instrument> search(InstrumentSpec searchSpec) {
+		Collection<Instrument> matches = new ArrayList<Instrument>();
+		for (Instrument inst : inventory) {
+			if (inst.getSpec().equals(searchSpec)) {
+				matches.add(inst);
 			}
 		}
-		return matchingGuitars.isEmpty() ? Collections.<Guitar> emptyList() : Collections.unmodifiableCollection(matchingGuitars);
-	}
-	
-	public Collection<Mandolin> search(MandolinSpec searchSpec) {
-		Collection<Mandolin> matchingMandolins = new ArrayList<Mandolin>();
-		for (Instrument m : inventory) {
-			if (m.getSpec().equals(searchSpec)) {
-				matchingMandolins.add((Mandolin) m);
-			}
-		}
-		return matchingMandolins.isEmpty() ? Collections.<Mandolin> emptyList() : Collections.unmodifiableCollection(matchingMandolins);
+		return matches.isEmpty() ? Collections.<Instrument> emptyList() : Collections.unmodifiableCollection(matches);
 	}
 }
