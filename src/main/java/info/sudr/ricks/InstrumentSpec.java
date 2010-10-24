@@ -1,4 +1,4 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
 
 import java.util.Collections;
 import java.util.HashMap;

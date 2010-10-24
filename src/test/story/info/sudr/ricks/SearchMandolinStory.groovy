@@ -1,10 +1,10 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
 
-import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
-import org.sudr.hfooad.ricks.InstrumentSpec.Type;
-import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
-import org.sudr.hfooad.ricks.InstrumentSpec.MandolinStyle;
-import org.sudr.hfooad.ricks.Instrument.InstrumentType;
+import info.sudr.ricks.InstrumentSpec.Builder;
+import info.sudr.ricks.InstrumentSpec.Type;
+import info.sudr.ricks.InstrumentSpec.Wood;
+import info.sudr.ricks.InstrumentSpec.MandolinStyle;
+import info.sudr.ricks.Instrument.InstrumentType;
 
 shared_behavior "shared behaviors", {
 	given "a stocked inventory", {

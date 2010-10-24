@@ -1,6 +1,6 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
 
-import org.sudr.hfooad.ricks.Instrument.InstrumentType;
+import info.sudr.ricks.Instrument.InstrumentType;
 
 shared_behavior "shared behaviors", {
 	given "an inventory", {

@@ -1,11 +1,12 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
+
+import info.sudr.ricks.Instrument.InstrumentType;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import org.sudr.hfooad.ricks.Instrument.InstrumentType;
 
 public class Inventory {
 

@@ -1,4 +1,4 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 

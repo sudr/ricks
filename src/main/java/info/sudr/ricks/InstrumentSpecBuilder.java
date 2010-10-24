@@ -1,12 +1,13 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
+
+import info.sudr.ricks.InstrumentSpec.Builder;
+import info.sudr.ricks.InstrumentSpec.MandolinStyle;
+import info.sudr.ricks.InstrumentSpec.Type;
+import info.sudr.ricks.InstrumentSpec.Wood;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
-import org.sudr.hfooad.ricks.InstrumentSpec.MandolinStyle;
-import org.sudr.hfooad.ricks.InstrumentSpec.Type;
-import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
 
 class InstrumentSpecBuilder {
 

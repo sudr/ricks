@@ -1,10 +1,10 @@
-package org.sudr.hfooad.ricks;
+package info.sudr.ricks;
 
-import org.sudr.hfooad.ricks.InstrumentSpec.Builder;
-import org.sudr.hfooad.ricks.InstrumentSpec.Type;
-import org.sudr.hfooad.ricks.InstrumentSpec.Wood;
-import org.sudr.hfooad.ricks.InstrumentSpec.MandolinStyle;
-import org.sudr.hfooad.ricks.Instrument.InstrumentType;
+import info.sudr.ricks.InstrumentSpec.Builder;
+import info.sudr.ricks.InstrumentSpec.Type;
+import info.sudr.ricks.InstrumentSpec.Wood;
+import info.sudr.ricks.InstrumentSpec.MandolinStyle;
+import info.sudr.ricks.Instrument.InstrumentType;
 
 shared_behavior "shared behaviors", {
 	given "a stocked inventory", {
@@ -116,7 +116,7 @@ scenario "searching for a guitar with Mahogany backwood", {
 	it_behaves_as "shared behaviors"
 
 	when "I search for a guitar with Mahogany backwood", {
-	guitarSpec = new InstrumentSpecBuilder()
+		guitarSpec = new InstrumentSpecBuilder()
 					  .builder(Builder.FENDER)
 					  .model("Stratocastor")
 					  .type(Type.ELECTRIC)
@@ -124,8 +124,8 @@ scenario "searching for a guitar with Mahogany backwood", {
 					  .topWood(Wood.ALDER)
 					  .numStrings(22)
 					  .build()
-	guitars = inventory.search(guitarSpec)
-}
+	    guitars = inventory.search(guitarSpec)
+	}
 	
 	then "I must not get any matches", {
 		assert guitars.size() == 0
